@@ -25,16 +25,14 @@ class GetCustomerView(APIView):
 
 class GetCustomerAddress(APIView):
     def get(self,request):
-        instance =CustomerAddress.objects.all()
-        serializers =GetCustomerAddress(instance,many=True)
+        instance = CustomerAddress.objects.all()
+        serializers = GetCustomerAddressSerializers(instance,many=True)
         return Response(serializers.data)
     
 
-class CustomerDetailsView(APIView):
+class CustomerDetailsAddressView(APIView):
     def get (self,request,pk):
       instance = Customers.objects.filter(id = pk)
       ser =CustomerDetailsAddressSerializers(instance,many=True)
       return Response(ser.data)
-
-
 
